@@ -1,7 +1,9 @@
 using System;
 using Core.Contract;
+using Core.Contract.IGeneric;
 using Core.Entities;
 using Infrastructure.Data;
+using Infrastructure.Data.Specifications;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,22 +12,24 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductController(IProductRepository _repo):ControllerBase
+public class ProductController(IGenericRepo<Product> _repo):ControllerBase
 {
 
 //get all product
- [HttpGet]
+ [HttpGet("getall")]
  // filtering product
- public async Task <ActionResult<IReadOnlyList<Product>>> GetAllProduct(string? productBrand, string? productType, string? sorting)
+ public async Task <ActionResult<IReadOnlyList<Product>>> GetProduct(string? brand, string? type, string? sort)
  {
- return Ok(await _repo.GetAllProductAsync(productBrand, productType, sorting));
+    var Spec = new ProductSpecification(brand, type, sort);
+    var products = await _repo.ListAsync(Spec);
+    return Ok(products);
  } 
 
  //get product by id
  [HttpGet("{id:int}")]
  public async Task<ActionResult<Product>> GetProductById(int id)
  {
-       var productById = await _repo.GetSingleProductByIdAsync(id); 
+       var productById = await _repo.GetDataByIdAsync(id); 
        if(productById==null)
        {
          return NotFound("Oops,we couldn't find any object on this id to delete");
@@ -37,23 +41,27 @@ public class ProductController(IProductRepository _repo):ControllerBase
  [HttpGet("GetBrands")]
  public async Task<ActionResult<IReadOnlyList<string>>>GetProductByBrands()
  {
-    return Ok(await _repo.GetProductByBrandsAsync());
+
+  //Implementating ToDo here
+
+    return Ok();
  }
 
  [HttpGet("GetType")]
  public async Task<ActionResult<IReadOnlyList<string>>> GetProductByType()
  {
-   return Ok(await _repo.GetProductByTypesAsync());
+  //Implementating ToDo here
+   return Ok();
  }
 
  // create product
  [HttpPost("CreateProduct")]
  public async Task<ActionResult<Product>> CreateProduct(Product product)
  {
-   _repo.AddProduct(product);
+   _repo.AddData(product);
    
 
-   if(await _repo.SaveChangesAsync())
+   if(await _repo.SaveAllDataAsync())
    {
       return CreatedAtAction("GetProductById", new {id = product.Id},product);
    }else
@@ -71,10 +79,10 @@ public class ProductController(IProductRepository _repo):ControllerBase
      return BadRequest("Oops.... Sorry, we can't edit this product because it already exist");
    }else
     {
-   _repo.EditProduct(product);
+   _repo.Edit(product);
     }
 
-    if(await _repo.SaveChangesAsync())
+    if(await _repo.SaveAllDataAsync())
     {
      return NoContent();
     }else{
@@ -85,13 +93,13 @@ public class ProductController(IProductRepository _repo):ControllerBase
 [HttpDelete("id:int")]
 public async Task<ActionResult> DeleteProducts(int id)
 {
- var deleteProduct = await _repo.GetSingleProductByIdAsync(id);
+ var deleteProduct = await _repo.GetDataByIdAsync(id);
  if(deleteProduct==null)
  {
  return NotFound("Oops, object notfound");
  }
- _repo.DeleteProduct(deleteProduct);
- if(await _repo.SaveChangesAsync()){
+ _repo.DeleteData(deleteProduct);
+ if(await _repo.SaveAllDataAsync()){
   return NotFound();
  }else
  {
@@ -101,6 +109,6 @@ public async Task<ActionResult> DeleteProducts(int id)
  // check if the product already exist in database
  private bool ProductAlreadyExist(int id)
  {
-  return _repo.ProductExist(id);
+  return _repo.Exist(id);
  }
 }

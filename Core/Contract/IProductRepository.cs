@@ -11,10 +11,7 @@ Task <IReadOnlyList<Product>>GetAllProductAsync(string? productBrand, string? pr
 Task<Product?> GetSingleProductByIdAsync(int id);
 Task<IReadOnlyList<string>>GetProductByBrandsAsync();
 Task<IReadOnlyList<string>>GetProductByTypesAsync();
-// Task<T>GetProductWithSpecification(ISpecification<T> specification);
-// Task<IReadOnlyList<T>>ListSpecificProductAsync(ISpecification<T> specification);
-// Task<TResult> GetProductWithSpecification<TResult>(ISpecification<T, TResult> specification);
-// Task<IReadOnlyList<TResult>>ListOfProductAsync<TResult>(ISpecification<T,TResult> specification);
+
 void AddProduct(Product product);
 void EditProduct(Product product);
 void DeleteProduct(Product product);
