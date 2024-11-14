@@ -11,14 +11,14 @@ namespace Core.Contract.IGeneric
     public interface IGenericRepo<T> where T : BaseEntity
     {
         Task<T?> GetDataByIdAsync(int id);
-        // specification method
-        Task<T?> GetEntityWithSpecAsync(ISpecification<T> spec);
 
-        // the specification that sort the product
+        // specification
+        Task<T?> GetEntityWithSpecAsync(ISpecification<T> spec);
         Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
 
         //projection
-        //Task<T?> GetEntityWithSpecAsync<TResult>(ISpecificationProjection<T, TResult>spec);
+        Task<TResult?> GetEntityWithSpecProjectionAsync<TResult>(ISpecProjection<T, TResult>projection);
+        Task<IReadOnlyList<TResult>>ListSpecProjAsync<TResult>(ISpecProjection<T,TResult> projection);
         Task<IReadOnlyList<T>> ListAllDataAsync();
         void AddData(T addEntities);
         void DeleteData(T deleteEntities);

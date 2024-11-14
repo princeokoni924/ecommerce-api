@@ -14,5 +14,7 @@ namespace Core.Contract.SpecificationServices
         Expression<Func<T, object>>? AscOrderBy { get; }
         
         Expression<Func<T, object>>? DescOrderBy { get; }
+
+        bool IsDistinct {get;}
     }
 }

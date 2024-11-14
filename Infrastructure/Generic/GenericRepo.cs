@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Core.IProjections;
 using Core.Contract.IGeneric;
 using Core.Contract.SpecificationServices;
 using Core.Entities;
@@ -45,6 +45,11 @@ namespace Infrastructure.Generic
             return await ApplySpecificationsHelper(specificationEntityAsync).FirstOrDefaultAsync();
         }
 
+        public async Task<TResult?> GetEntityWithSpecProjectionAsync<TResult>(ISpecProjection<T, TResult> projection)
+        {
+            return await ApplyProjectionHelper(projection).FirstOrDefaultAsync();
+        }
+
         public async Task<IReadOnlyList<T>> ListAllDataAsync()
         {
             return await _db.Set<T>().ToListAsync();
@@ -53,6 +58,11 @@ namespace Infrastructure.Generic
         public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> SpecAsync)
         {
             return await ApplySpecificationsHelper(SpecAsync).ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<TResult>> ListSpecProjAsync<TResult>(ISpecProjection<T, TResult> projection)
+        {
+            return await ApplyProjectionHelper(projection).ToListAsync();
         }
 
         public async Task<bool> SaveAllDataAsync()
@@ -64,6 +74,11 @@ namespace Infrastructure.Generic
         {
                 // return specificationEvaluator and create a static methog
                 return SpecificationEvaluator<T>.GetQuery(_db.Set<T>().AsQueryable(),specHelper);
+        }
+
+        private IQueryable<TResult> ApplyProjectionHelper<TResult>(ISpecProjection<T, TResult> projection)
+        {
+            return SpecificationEvaluator<T>.GetQueryProjection<T,TResult>(_db.Set<T>().AsQueryable(), projection);
         }
     }
 }

@@ -20,12 +20,14 @@ namespace Core.Contract.SpecificationServices
 
         public Expression<Func<T, object>>? DescOrderBy {get; private set;}
 
+        public bool IsDistinct {get; private set;}
 
-         //   protected void AddCriteria(Expression<Func<T, bool>> CriteriaExpression)
-         //   {
-         //        Criteria = CriteriaExpression;
-         //   }
- 
+
+        //   protected void AddCriteria(Expression<Func<T, bool>> CriteriaExpression)
+        //   {
+        //        Criteria = CriteriaExpression;
+        //   }
+
         protected void AddOrderBy(Expression<Func<T, object>> orderByExpressionFunction)
         {
            AscOrderBy = orderByExpressionFunction;
@@ -34,6 +36,11 @@ namespace Core.Contract.SpecificationServices
         protected void AddOrderByDescending(Expression<Func<T, object>>orderByDescendingExpressionFunction)
         {
             DescOrderBy = orderByDescendingExpressionFunction;
+        }
+
+        protected void ApplyDistinct()
+        {
+          IsDistinct = true;
         }
     }
 }

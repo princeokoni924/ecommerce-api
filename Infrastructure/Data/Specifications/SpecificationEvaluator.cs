@@ -29,10 +29,15 @@ namespace Infrastructure.Data.Specifications
             {
                 query = query.OrderByDescending(spec.DescOrderBy);
             }
+
+            if(spec.IsDistinct)
+            {
+                query = query.Distinct();
+            }
             return query;
         }
 
-        public static IQueryable<TResult>GetQueryProjection<TSpec, TResult>(IQueryable<T> query, ISpecificationProjection<T, TResult> spec)
+        public static IQueryable<TResult>GetQueryProjection<TSpec, TResult>(IQueryable<T> query, ISpecProjection<T, TResult> spec)
         {
             if(spec.Criteria !=null)
             {
@@ -48,12 +53,17 @@ namespace Infrastructure.Data.Specifications
             {
              query = query.OrderByDescending(spec.DescOrderBy);
             }
-        var selectQuery = query as IQueryable<TResult>;
+          var selectQuery = query as IQueryable<TResult>;
 
-         if(spec.SelectionExp !=null)
-         {
-            selectQuery = query.Select(spec.SelectionExp);
-         }
+            if(spec.Select !=null)
+           {
+            selectQuery = query.Select(spec.Select);
+           }
+
+           if(spec.IsDistinct)
+           {
+            selectQuery = selectQuery?.Distinct();
+           }
                 return selectQuery?? query.Cast<TResult>();
         }
     }

@@ -7,8 +7,8 @@ using Core.Contract.SpecificationServices;
 
 namespace Core.IProjections
 {
-    public interface ISpecificationProjection<T, TResult> :ISpecification<T>
+    public interface ISpecProjection<T, TResult> :ISpecification<T>
     {
-        Expression<Func<T, TResult>>? SelectionExp {get;}
+        Expression<Func<T, TResult>>? Select {get;}
     }
 }
