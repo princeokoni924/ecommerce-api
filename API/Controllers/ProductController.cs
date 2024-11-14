@@ -1,6 +1,7 @@
 using System;
 using Core.Contract;
 using Core.Contract.IGeneric;
+using Core.Contract.SpecificationServices;
 using Core.Entities;
 using Infrastructure.Data;
 using Infrastructure.Data.Specifications;
@@ -38,20 +39,22 @@ public class ProductController(IGenericRepo<Product> _repo):ControllerBase
        
  }
 
- [HttpGet("GetBrands")]
+ [HttpGet("getBrands")]
  public async Task<ActionResult<IReadOnlyList<string>>>GetProductByBrands()
  {
 
   //Implementating ToDo here
+  var brandSpec = new BrandListSpecifications();
 
-    return Ok();
+    return Ok( await _repo.ListSpecProjAsync(brandSpec));
  }
 
- [HttpGet("GetType")]
+ [HttpGet("getType")]
  public async Task<ActionResult<IReadOnlyList<string>>> GetProductByType()
  {
   //Implementating ToDo here
-   return Ok();
+  var typeSpec = new TypeListSpecifications();
+   return Ok(await _repo.ListSpecProjAsync(typeSpec));
  }
 
  // create product
