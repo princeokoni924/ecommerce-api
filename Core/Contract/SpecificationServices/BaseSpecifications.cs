@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Core.Contract.SpecificationServices
 {
@@ -22,12 +17,28 @@ namespace Core.Contract.SpecificationServices
 
         public bool IsDistinct {get; private set;}
 
+        public int Take {get; private set;}
+
+        public int Skip {get; private set;}
+
+        public bool IsPagingEnable {get; private set;}
+
+        public IQueryable<T> ApplyCriteriaCount(IQueryable<T> queryCount)
+        {
+            if(criteria !=null)
+            {
+               queryCount = queryCount.Where(criteria);
+            }
+            return queryCount;
+        }
+
 
         //   protected void AddCriteria(Expression<Func<T, bool>> CriteriaExpression)
         //   {
         //        Criteria = CriteriaExpression;
         //   }
 
+        // functionalities
         protected void AddOrderBy(Expression<Func<T, object>> orderByExpressionFunction)
         {
            AscOrderBy = orderByExpressionFunction;
@@ -41,6 +52,14 @@ namespace Core.Contract.SpecificationServices
         protected void ApplyDistinct()
         {
           IsDistinct = true;
+        }
+
+        // paging functionalities
+        protected void ApplyPaging(int skip, int take)
+        {
+            Skip = skip;
+            Take = take;
+            IsPagingEnable = true;
         }
     }
 }

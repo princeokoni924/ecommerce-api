@@ -1,29 +1,24 @@
-using System;
-using Core.Contract;
+using API.RequestHelper;
 using Core.Contract.IGeneric;
 using Core.Contract.SpecificationServices;
 using Core.Entities;
-using Infrastructure.Data;
+using Core.Params;
 using Infrastructure.Data.Specifications;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ProductController(IGenericRepo<Product> _repo):ControllerBase
+
+public class ProductController(IGenericRepo<Product> _repo):BaseApiController
 {
 
 //get all product
- [HttpGet("getall")]
- // filtering product
- public async Task <ActionResult<IReadOnlyList<Product>>> GetProduct(string? brand, string? type, string? sort)
+ [HttpGet]
+ // Cleaning up controller
+ public async Task <ActionResult<IReadOnlyList<Product>>> GetProduct([FromQuery] ProductSpecParams specParams)
  {
-    var Spec = new ProductSpecification(brand, type, sort);
-    var products = await _repo.ListAsync(Spec);
-    return Ok(products);
+    var spec = new ProductSpecification(specParams);
+    return await CreatePageResult(_repo, spec, specParams.PageIndex, specParams.PageSize);
  } 
 
  //get product by id

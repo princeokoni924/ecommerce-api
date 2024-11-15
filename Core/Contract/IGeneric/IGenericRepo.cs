@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Core.Contract.SpecificationServices;
 using Core.Entities;
 using Core.IProjections;
@@ -25,5 +21,8 @@ namespace Core.Contract.IGeneric
         void Edit(T updateEntities);
         Task<bool> SaveAllDataAsync();
         bool Exist(int id);
+
+        // getting the count and pass Ispecification interface
+        Task<int> CountAsync(ISpecification<T>specCount);
     }
 }

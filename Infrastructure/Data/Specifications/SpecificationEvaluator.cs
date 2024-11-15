@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Core.Contract.SpecificationServices;
 using Core.Entities;
 using Core.IProjections;
@@ -34,6 +30,12 @@ namespace Infrastructure.Data.Specifications
             {
                 query = query.Distinct();
             }
+
+            // check if paging is enable
+            if(spec.IsPagingEnable)
+            {
+                query = query.Skip(spec.Skip).Take(spec.Take);
+            }
             return query;
         }
 
@@ -63,6 +65,12 @@ namespace Infrastructure.Data.Specifications
            if(spec.IsDistinct)
            {
             selectQuery = selectQuery?.Distinct();
+           }
+
+           // check for projection
+           if(spec.IsPagingEnable)
+           {
+            selectQuery = selectQuery?.Skip(spec.Skip).Take(spec.Take);
            }
                 return selectQuery?? query.Cast<TResult>();
         }

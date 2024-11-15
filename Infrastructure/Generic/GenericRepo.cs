@@ -72,13 +72,20 @@ namespace Infrastructure.Generic
 
         private IQueryable<T> ApplySpecificationsHelper(ISpecification<T> specHelper)
         {
-                // return specificationEvaluator and create a static methog
+                // return specificationEvaluator and create a static method
                 return SpecificationEvaluator<T>.GetQuery(_db.Set<T>().AsQueryable(),specHelper);
         }
 
         private IQueryable<TResult> ApplyProjectionHelper<TResult>(ISpecProjection<T, TResult> projection)
         {
             return SpecificationEvaluator<T>.GetQueryProjection<T,TResult>(_db.Set<T>().AsQueryable(), projection);
+        }
+              // counting functionality
+        public async Task<int> CountAsync(ISpecification<T> specCount)
+        {
+            var querySpecCount = _db.Set<T>().AsQueryable();
+            querySpecCount = specCount.ApplyCriteriaCount(querySpecCount);
+            return await querySpecCount.CountAsync();
         }
     }
 }

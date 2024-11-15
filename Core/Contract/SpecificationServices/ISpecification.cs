@@ -16,5 +16,12 @@ namespace Core.Contract.SpecificationServices
         Expression<Func<T, object>>? DescOrderBy { get; }
 
         bool IsDistinct {get;}
+        // pagination property
+        int Take {get;}
+        int Skip {get;}
+        bool IsPagingEnable {get;}
+
+        // apply criteria for count
+        IQueryable<T>ApplyCriteriaCount(IQueryable<T> queryCount);
     }
 }
