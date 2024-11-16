@@ -18,6 +18,8 @@ public static class ServicConfiguration
   services.AddDbContext<StoreContext>(opt=>opt.UseSqlServer(configuration.GetConnectionString("StoreConns")));
   services.AddScoped<IProductRepository,ProductRepository>();
   services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
+  
+  
       return services;
  }
 }
