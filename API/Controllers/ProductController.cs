@@ -34,7 +34,7 @@ public class ProductController(IGenericRepo<Product> _repo):BaseApiController
        
  }
 
- [HttpGet("getBrands")]
+ [HttpGet("brand")]
  public async Task<ActionResult<IReadOnlyList<string>>>GetProductByBrands()
  {
 
@@ -44,7 +44,7 @@ public class ProductController(IGenericRepo<Product> _repo):BaseApiController
     return Ok( await _repo.ListSpecProjAsync(brandSpec));
  }
 
- [HttpGet("getType")]
+ [HttpGet("type")]
  public async Task<ActionResult<IReadOnlyList<string>>> GetProductByType()
  {
   //Implementating ToDo here

@@ -23,4 +23,10 @@ creating a class for the custom theme
 }
 }
 
-// container class
+.text-primary{
+                color: #7d00fa;
+}
+
+button.match-input-height{
+ height: var(match-form-field-container-height) !important
+}
