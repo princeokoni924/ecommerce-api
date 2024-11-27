@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { Pagination } from './shared/models/Pagination';
-import { Products } from './shared/models/Product'
+import { Product} from './shared/models/Product'
 import { ShopService } from './angularCore/Services/shop.service';
 import { ShopComponent } from "./feature/shop/shop.component";
 

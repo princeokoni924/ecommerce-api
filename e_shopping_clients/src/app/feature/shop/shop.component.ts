@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ShopService } from '../../angularCore/Services/shop.service';
-import { Products } from '../../shared/models/Product';
+import { Product } from '../../shared/models/Product';
 import { MatCard } from '@angular/material/card';
 import { ProductItemComponent } from "./product-item/product-item.component";
 import { MatDialog } from '@angular/material/dialog';
@@ -8,8 +8,7 @@ import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
-import { MatOption, MatSelect, MatSelectChange } from '@angular/material/select';
-import { MatList, MatListOption, MatSelectionList, MatSelectionListChange } from '@angular/material/list';
+import { MatListOption, MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 import { ShopParams } from '../../shared/models/shopParams';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Pagination } from '../../shared/models/Pagination';
@@ -37,7 +36,7 @@ export class ShopComponent implements OnInit {
 private shopService = inject(ShopService);
 // inject dialog service
 private shopDialogService = inject(MatDialog)
-products?: Pagination<Products>;
+products?: Pagination<Product>;
 sortOptions = [
   {name: "Alphabertical",value: "name"},
   {name:"Price: Low-High",value: 'priceAsc'},
@@ -72,13 +71,9 @@ getProductHelper(){
 }
 // method for search
 onSearchChange(){
-  // take parameter from shop param
   this.shopParams.pageNumber = 1;
-  // invoke get product helper here
   this.getProductHelper();
 }
-
-//method to handle page event
 handlePageEvent(event: PageEvent){
  this.shopParams.pageNumber = event.pageIndex + 1;
  this.shopParams.pageSize = event.pageSize;

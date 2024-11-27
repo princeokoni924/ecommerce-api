@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Pagination } from '../../shared/models/Pagination';
-import { Products } from '../../shared/models/Product';
+import { Product } from '../../shared/models/Product';
 import { ShopParams } from '../../shared/models/shopParams';
 
 @Injectable({
@@ -17,6 +17,7 @@ export class ShopService {
 
   getProducts(shopParams: ShopParams)
   {
+    //let message: string
     let params = new HttpParams();
     if(shopParams.brands.length>0)
     {
@@ -32,13 +33,19 @@ export class ShopService {
       params = params.append('sort', shopParams.sort )
     }
 
-    if(shopParams.search){
-      params = params.append('search', shopParams.search)
+    if(shopParams.Search){
+      params = params.append('search', shopParams.Search)
+    }else{
+    
     }
     params = params.append('pageSize', shopParams.pageSize);
-     params = params.append('pageIndex', shopParams.pageNumber)
+    params = params.append('pageIndex', shopParams.pageNumber)
 
-   return this.http.get<Pagination<Products>>(this.baseUrl+ 'product', {params})
+   return this.http.get<Pagination<Product>>(this.baseUrl+ 'product', {params})
+  }
+
+  getProductById(id: number){
+   return this.http.get<Product>(this.baseUrl + 'product/' + id);
   }
 
   // method to get the brands
