@@ -28,5 +28,11 @@ creating a class for the custom theme
 }
 
 button.match-input-height{
- height: var(match-form-field-container-height) !important
+ height: var(--match-form-field-container-height) !important
+}
+.btn{
+ height: 3.5rem !important;
+}
+.mdc-notched-outline__notch{
+border-right-style: none !important
 }
