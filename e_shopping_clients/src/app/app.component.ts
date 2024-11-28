@@ -1,10 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, HostListener} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
-import { HttpClient } from '@angular/common/http';
-import { Pagination } from './shared/models/Pagination';
-import { Product} from './shared/models/Product'
-import { ShopService } from './angularCore/Services/shop.service';
 import { ShopComponent } from "./feature/shop/shop.component";
 
 
@@ -14,12 +10,25 @@ import { ShopComponent } from "./feature/shop/shop.component";
   imports: [
     RouterOutlet,
      HeaderComponent,
-      ShopComponent
+      //ShopComponent
     ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent{
+export default class AppComponent {
     title = 'ShopMax'
+    public getScreenWidth: any;
+    public getScreenHeight: any;
+
+    ngOnInit(){
+      this.getScreenWidth = window.innerWidth;
+      this.getScreenHeight = window.innerHeight;
+    }
+
+    @HostListener('window: resize', ['$event'])
+    OnWindowResize(){
+      this.getScreenWidth = window.innerWidth;
+      this.getScreenHeight = window.innerHeight;
+    }
   }
 

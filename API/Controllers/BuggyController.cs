@@ -40,7 +40,7 @@ namespace API.Controllers
 
 
             //validationerror
-            [HttpPost("validateError")]
+            [HttpPost("validaterror")]
             public IActionResult GetValidateError(CreateProductDto productDto)
             {
                 return Ok();
