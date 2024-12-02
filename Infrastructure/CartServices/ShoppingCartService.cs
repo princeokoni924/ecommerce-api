@@ -23,7 +23,7 @@ namespace Infrastructure.CartServices
 
           public async Task<ShoppingCart?> SetShoppingCartAsync(ShoppingCart cart)
         {
-            var created = await _db.StringSetAsync(cart.Id, JsonSerializer.Serialize(cart), TimeSpan.FromHours(6));
+            var created = await _db.StringSetAsync(cart.Id, JsonSerializer.Serialize(cart), TimeSpan.FromDays(30));
             if(!created){
                 return null;
             }else{
