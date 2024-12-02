@@ -3,12 +3,21 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure.ServicConfig;
 using Infrastructure.Data.SeedData;
 using API.MiddleWare;
+using StackExchange.Redis;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddServices(builder.Configuration);
+builder.Services.AddSingleton<IConnectionMultiplexer>(config =>{
+  var connString = builder.Configuration.GetConnectionString("Redis");
+  if(connString == null){
+    throw new Exception("sorry"+", "+"something went wrong!"+" "+"maybe we couldn't fetch data from redis");
+  }
+  var configuration = ConfigurationOptions.Parse(connString, true);
+   return ConnectionMultiplexer.Connect(configuration);
+});
 // adding cors service
 builder.Services.AddCors();
 

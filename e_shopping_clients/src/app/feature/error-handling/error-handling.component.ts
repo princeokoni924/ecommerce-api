@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-error-handling',
   standalone: true,
   imports: [
-    MatButton
+    MatButton,
+    MatIcon,
+    
   ],
   templateUrl: './error-handling.component.html',
   styleUrl: './error-handling.component.scss'
