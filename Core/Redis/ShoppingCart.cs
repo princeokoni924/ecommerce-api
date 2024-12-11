@@ -1,3 +1,5 @@
+using Core.Redis;
+
 namespace Core.Entities.RedisShopCart
 {
     public class ShoppingCart
