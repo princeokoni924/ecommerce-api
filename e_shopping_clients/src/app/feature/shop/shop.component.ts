@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './shop.component.scss'
 })
 export class ShopComponent implements OnInit {
+
 private shopService = inject(ShopService);
 // inject dialog service
 private shopDialogService = inject(MatDialog)
@@ -52,7 +53,9 @@ pageSizeOptions= [5,10,15,20,25]
 ngOnInit(): void {
   // invoke initializeShop here
   this.initializeShopService()
+
 }
+
 
 // method to initialize the shop
 initializeShopService(){

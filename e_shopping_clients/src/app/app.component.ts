@@ -1,7 +1,11 @@
-import { Component, HostListener} from '@angular/core';
+import { Component, HostListener, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import { ShopComponent } from "./feature/shop/shop.component";
+import { HttpClient } from '@angular/common/http';
+import { Cart } from './shared/models/Cart';
+import { Pagination } from './shared/models/Pagination';
+import { Product } from './shared/models/Product';
 
 
 @Component({
@@ -10,25 +14,39 @@ import { ShopComponent } from "./feature/shop/shop.component";
   imports: [
     RouterOutlet,
      HeaderComponent,
-      //ShopComponent
+      ShopComponent
     ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export default class AppComponent {
-    title = 'ShopMax'
-    public getScreenWidth: any;
-    public getScreenHeight: any;
+export  class AppComponent  implements OnInit{
+ 
+  baseUrl = 'https://localhost:5073/api/'
+private http = inject(HttpClient)
+  title = 'ShopMax';
+  products : Product[]=[]
 
-    ngOnInit(){
-      this.getScreenWidth = window.innerWidth;
-      this.getScreenHeight = window.innerHeight;
-    }
+  ngOnInit(): void {
+    this.http.get<Pagination<Product>>(this.baseUrl + 'product').subscribe({
+      next: response => this.products = response.data,
+      error: (error) => alert(error),
+      complete: ()=> alert('completed')
+      
+    })
+  }
+   
+    // public getScreenWidth: any;
+    // public getScreenHeight: any;
 
-    @HostListener('window: resize', ['$event'])
-    OnWindowResize(){
-      this.getScreenWidth = window.innerWidth;
-      this.getScreenHeight = window.innerHeight;
-    }
+    // ngOnInit(){
+    //   this.getScreenWidth = window.innerWidth;
+    //   this.getScreenHeight = window.innerHeight;
+    // }
+
+    // @HostListener('window: resize', ['$event'])
+    // OnWindowResize(){
+    //   this.getScreenWidth = window.innerWidth;
+    //   this.getScreenHeight = window.innerHeight;
+    // }
   }
 

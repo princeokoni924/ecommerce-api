@@ -20,8 +20,8 @@ itemCount = computed(()=>{
 })
  
 
-getCart(getCartById:string){
-return this.http.get<Cart>(this.baseUrl + 'shoppingcart?id=' + getCartById).pipe(
+getCart(id:string){
+return this.http.get<Cart>(this.baseUrl + 'shoppingcart?id=' + id).pipe(
  map(cartSignal =>{
   this.cartSignal.set(cartSignal);
   return cartSignal;
@@ -31,9 +31,9 @@ return this.http.get<Cart>(this.baseUrl + 'shoppingcart?id=' + getCartById).pipe
 
 
 
-setCart(setCart: Cart){
-return this.http.post<Cart>(this. baseUrl+ 'shoppingcart', setCart).subscribe({
-  next: setCartSub => this.cartSignal.set(setCartSub),
+setCart(cart: Cart){
+return this.http.post<Cart>(this. baseUrl+ 'shoppingcart', cart).subscribe({
+  next: cartSignal => this.cartSignal.set(cartSignal),
   
 })
 }
@@ -43,7 +43,7 @@ return this.http.post<Cart>(this. baseUrl+ 'shoppingcart', setCart).subscribe({
 addItemsToCart(item: CartItem |Product, quantity =1){
  const getAllCart = this.cartSignal()?? this.createCart();
  if(this.isProduct(item)){
-  //map product to cart item``  
+  //map product to cart item 
   item = this.mapProductToCartItem(item);
  }
  getAllCart.items = this.addOrUpdateItem(getAllCart.items, item, quantity,);
@@ -56,7 +56,7 @@ addItemsToCart(item: CartItem |Product, quantity =1){
     item.quantity = quantity;
     items.push(item)
    }else{
-    items[index].quantity +=quantity
+    items[index].quantity += quantity
    }
    return items
   }

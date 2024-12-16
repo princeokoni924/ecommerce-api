@@ -15,9 +15,9 @@ init(){
  const cartId = localStorage.getItem('cart_id');
 
  // initializing observable. if cart is not found the return the cart id or if the cart is not exist return null
- const cartObservable$ = cartId? this.cartService.getCart(cartId) : of (null);
+ const cart$ = cartId ? this.cartService.getCart(cartId) : of (null);
  
  // returning the observable
- return cartObservable$;
+ return cart$;
 }
 }

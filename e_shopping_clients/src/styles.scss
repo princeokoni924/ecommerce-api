@@ -22,7 +22,9 @@ creating a class for the custom theme
 
 }
 }
-
+.ccontainer{
+ @apply mx-auto max-w-2xl
+}
 .text-primary{
                 color: #7d00fa;
 }

@@ -25,7 +25,9 @@ export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true })
     , provideRouter(routes)
     , provideAnimationsAsync()
-    ,provideHttpClient(withInterceptors([errorInterceptor, loadingInterceptor])),
+    ,provideHttpClient(withInterceptors
+      ([errorInterceptor,
+       loadingInterceptor])),
     {
       provide: APP_INITIALIZER,
       // use initializer method here
