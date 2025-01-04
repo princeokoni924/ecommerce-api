@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class FilterDialogComponent {
 shopService = inject(ShopService);
-private dialogRef = inject(MatDialogRef<FilterDialogComponent>)
+private dialogRefService = inject(MatDialogRef<FilterDialogComponent>)
 // inject data
 data = inject(MAT_DIALOG_DATA)
 
@@ -32,7 +32,7 @@ selectedTypes: string[] = this.data.selectedTypes;
 // apply filter method
 applyFilter()
 {
- this.dialogRef.close({
+ this.dialogRefService.close({
  selectedBrands: this.selectedBrands,
  selectedTypes: this.selectedTypes
  })

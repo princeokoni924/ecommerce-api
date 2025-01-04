@@ -7,22 +7,27 @@
        </div>
 
            <div>
-                <h1 class="text-2xl font-semibold text-gray-900">{{product.name}}</h1>
+                <h1 class="text-2xl font-bold text-gray-900">{{product.name}}</h1>
+                <p>you have {{quantityInCart}} of this item in your cart</p>
                   <div class="mt-4 items-center flex gap-4">
                 <p class="text-3xl font-extrabold text-gray-900">
                 {{product.price | currency: "₦"}}
                 </p>
                 </div>
                    <div class="mt-6 mb-6 gap-4 flex">
-                                <button mat-flat-button class=" btn">
-                                                <!-- match-input-height -->
+                     <!-- disable the button if the quantity in cart already added -->
+                                <button [disabled]="quantity == quantityInCart" mat-flat-button class=" btn"
+                                (click)="updateCart()"  
+                                >
+                                              
+                                  <!-- match-input-height -->
                                 <mat-icon>shopping_cart</mat-icon>
-                                  Add to cart
+                                  {{getButtonText()}}
                                 </button>
 
                                 <mat-form-field appearance="outline" class="flex">
-                                <mat-label>Qty</mat-label>
-                                <input matInput type="number" placeholder="">
+                                <mat-label>Quantity</mat-label>
+                                <input matInput min="0" [(ngModel)]="quantity" type="number" placeholder="">
                                 </mat-form-field>
                       </div>
                                 <mat-divider></mat-divider>

@@ -4,6 +4,8 @@ using Infrastructure.ServicConfig;
 using Infrastructure.Data.SeedData;
 using API.MiddleWare;
 using StackExchange.Redis;
+using Core.Contract.ICartServices;
+using Infrastructure.CartServices;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -43,7 +45,8 @@ servise to allow are, (1) allow header,
  allow any method,
   from a specific origin
 */
-app.UseCors(c=>c.AllowAnyHeader()
+app.UseCors(
+  c=>c.AllowAnyHeader()
 .AllowAnyMethod()
 .WithOrigins("http://localhost:4200","https://localhost:4200"));
 

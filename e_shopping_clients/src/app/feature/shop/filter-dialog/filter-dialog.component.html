@@ -3,15 +3,15 @@
 <mat-divider></mat-divider>
 <!-- Brand -->
 <div class="flex p-4">
-                <div class="w-1/2">
-                <h4 class="font-semibold text-xl text-primary">Brands</h4>
-                <mat-selection-list [(ngModel)]="selectedBrands" [multiple]="true">
-                @for (brand of shopService.brands; track $index)
-                {
-                                <mat-list-option [value]="brand">{{brand}}</mat-list-option>
-                }
-                </mat-selection-list>
-                </div>
+      <div class="w-1/2">
+      <h4 class="font-semibold text-xl text-primary">Brands</h4>
+      <mat-selection-list [(ngModel)]="selectedBrands" [multiple]="true">
+      @for (brand of shopService.brands; track $index)
+      {
+      <mat-list-option [value]="brand">{{brand}}</mat-list-option>
+      }
+      </mat-selection-list>
+      </div>
 
  <!-- Type start here -->
 
@@ -20,7 +20,7 @@
      <div class="w-1/2">
       <h4 class="font-semibold text-xl text-primary">Types</h4>
       <mat-selection-list [(ngModel)]="selectedTypes" [multiple]="true">
-                @for (type of shopService.types; track type)
+                @for (type of shopService.types; track $index)
                  {
                   <mat-list-option [value]="type">{{type}}</mat-list-option>
                 }
@@ -30,8 +30,10 @@
 
   <!-- Type end -->
 
-  <div class="flex justify-end p-4">
-      <button mat-flat-button (click)="applyFilter()">Apply filters</button>
-  </div>
 </div>
+
+<div class="flex justify-end p-4">
+  <button mat-flat-button (click)="applyFilter()">filter</button>
+</div>
+
 </div>

@@ -1,0 +1,48 @@
+<div class="mx-auto max-w-4xl flex-1 space-y-6 w-full">
+                <div class="space-y-4 border-gray-200 p-4
+                 rounded-lg bg-white shadow-sm ">
+                <p class="text-xl font-semibold">Order summary</p>
+                <div class="space-y-4">
+        <div class="space-y-2">
+                <dl class="flex items-center justify-between gap-4">
+                                <dt class=" font-medium text-gray-500">Subtotal</dt>
+                                <dd class="text-gray-900 font-medium">{{cartService.totalItems()?.subtotal | currency:"₦"}}</dd>
+                </dl>
+
+                <dl class="flex items-center justify-between gap-4">
+                                <dt class=" font-medium text-gray-500">Discount</dt>
+                                <dd class="text-green-500 font-medium">-{{cartService.totalItems()?.discount| currency:"₦"}}</dd>
+                </dl>
+
+                <dl class="flex items-center justify-between gap-4">
+                                <dt class=" font-medium text-gray-500">Delivery fee</dt>
+                                <dd class="text-gray-900 font-medium"> {{cartService.totalItems()?.shipping | currency:"₦"}}</dd>
+                </dl>           
+        </div>
+
+                <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2">
+                                <dt class=" font-medium text-gray-500">Total</dt>
+                                <dd class="text-gray-900 font-medium"> {{cartService.totalItems()?.total | currency: "₦"}}</dd>
+                </dl>
+
+          </div>
+     <div class="flex flex-col gap-2">
+                <button routerLink="/checkout/" mat-flat-button >Proceed to checkout</button>
+                <button routerLink="/shop/" mat-button class="bg-gray-200 text-gray-900 font-semibold py-2 rounded-lg">Continue shopping</button>
+     </div>
+    </div>
+
+<div class="space-y-4 rounded-lg border border-gray-200 p-4 bg-white shadow-sm">
+ <form class="space-y-2 flex flex-col p-2" action="">
+  <label class="mb-2 block text-sm font-medium">
+                Do you have a voucher code?
+  </label>
+  <mat-form-field appearance="outline">
+                <mat-label>voucher code </mat-label>
+                <input type="text" matInput>
+  </mat-form-field>
+                <button mat-flat-button type="submit">Apply</button>
+ </form>
+</div>
+
+</div>

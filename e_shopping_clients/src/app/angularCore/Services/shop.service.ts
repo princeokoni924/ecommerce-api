@@ -3,13 +3,14 @@ import { inject, Injectable } from '@angular/core';
 import { Pagination } from '../../shared/models/Pagination';
 import { Product } from '../../shared/models/Product';
 import { ShopParams } from '../../shared/models/shopParams';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
 
-  baseUrl = 'https://localhost:5073/api/';
+  baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
   // get type and brand here
   types: string[] = [];
@@ -50,22 +51,22 @@ export class ShopService {
 
   // method to get the brands
    getBrands(){
-    if(this.brands.length > 0)
-     return;
+    if(this.brands.length > 0)return;
 
     return this.http.get<string[]>(this.baseUrl + 'product/brand').subscribe
     ({
-        next: brandResponse => this.brands = brandResponse
+        next: brandResponse => this.brands = brandResponse,
+        error: er => alert('error loading brand from the server')
     })
    }
 
    // method to get type
    getTypes(){
-    if(this.types.length>0)
-      return;
+    if(this.types.length>0)return;
     return this.http.get<string[]>(this.baseUrl + 'product/type').subscribe
     ({
-      next: typeResponse => this.types = typeResponse
+      next: typeResponse => this.types = typeResponse,
+      error: er=> alert('error loading type from server')
     })
    }
 }

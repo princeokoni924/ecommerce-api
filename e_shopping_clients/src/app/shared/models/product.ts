@@ -4,8 +4,8 @@ id: number;
 name: string;
 description: string;
 brand: string;
-type: string;
+productType: string;
 price: number;
 pictureUrl: string;
-QtyInStk: number;
+qtyInStk: number;
 }

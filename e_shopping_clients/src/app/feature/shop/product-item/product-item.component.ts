@@ -23,6 +23,6 @@ import { CartService } from '../../../angularCore/Services/cart.service';
   styleUrl: './product-item.component.scss'
 })
 export class ProductItemComponent {
-@Input() product?: Product
-cartService = inject(CartService)
+@Input() product?: Product;
+cartService = inject(CartService);
 }

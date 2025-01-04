@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ShopService } from '../../angularCore/Services/shop.service';
 import { Product } from '../../shared/models/Product';
-import { MatCard } from '@angular/material/card';
 import { ProductItemComponent } from "./product-item/product-item.component";
 import { MatDialog } from '@angular/material/dialog';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
@@ -18,7 +17,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-shop',
   standalone: true,
   imports: [
-    MatCard,
     ProductItemComponent,
     MatButton, // for btn
     MatIcon, // for icon
@@ -39,14 +37,14 @@ private shopService = inject(ShopService);
 private shopDialogService = inject(MatDialog)
 products?: Pagination<Product>;
 sortOptions = [
-  {name: "Alphabertical",value: "name"},
-  {name:"Price: Low-High",value: 'priceAsc'},
-  {name: 'Price: High-Low', value: 'priceDesc'}
+  {name: "Alphabertically",value: "name"},
+  {name: 'Low-High price',value: 'priceAsc'},
+  {name: 'High-Low price', value: 'priceDesc'}
 ]
 
 // initalize obj for shop params
 shopParams = new ShopParams();
-pageSizeOptions= [5,10,15,20,25]
+pageSizeOptions= [5,10,15,20,25];
 
 
 
@@ -84,8 +82,9 @@ handlePageEvent(event: PageEvent){
 }
 // invoking the onsortchange method
 onSortChange(event: MatSelectionListChange){
- const selectedOption = event.options[0]
+ const selectedOption = event.options[0];
  if(selectedOption){
+  
   this.shopParams.sort = selectedOption.value;
   this.shopParams.pageNumber = 1;
   this.getProductHelper();
@@ -96,14 +95,18 @@ onSortChange(event: MatSelectionListChange){
 // method to open the dialog
 openFilterDialog()
 {
- const dialogRef = this.shopDialogService.open(FilterDialogComponent,{
-  minWidth: '500px',
+ const dialogRefServices = this.shopDialogService.open(FilterDialogComponent,{
+  minWidth: '400px',
   data:{
      selectedBrands: this.shopParams.brands,
     selectedTypes: this.shopParams.types
   }
  });
-dialogRef.afterClosed().subscribe
+
+
+
+
+ dialogRefServices.afterClosed().subscribe
 ({
   next: result =>{
     if(result){
@@ -113,6 +116,7 @@ dialogRef.afterClosed().subscribe
       this.shopParams.pageNumber = 1;
      // invoke get product helper method here
      this.getProductHelper();
+     //this.shopService.getProducts()
     }
   }
 })

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    public class ShoppingCartController(IShoppingCartServices _cartService):BaseApiController
+    public class CartController(IShoppingCartServices _cartService):BaseApiController
     {
         [HttpGet]
         public async Task<ActionResult<ShoppingCart>> GetCartById(string id){
@@ -14,23 +14,24 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ShoppingCart>> EditCart(ShoppingCart shoppingCart){
-          var editCart = await _cartService.SetShoppingCartAsync(shoppingCart);
-          if(editCart == null){
+        public async Task<ActionResult<ShoppingCart>> EditCart(ShoppingCart cart){
+          var editCart = await _cartService.SetShoppingCartAsync(cart);
+          if(editCart == null)
             return BadRequest("Ooops"+", "+"error occure trying to update the  cart");
-          }else{
-            return Ok();
-          }
+          
+            //return Ok();
+          
+          return Ok(editCart);
         }
           
         [HttpDelete]
-        public async Task<ActionResult> DeleteCart(string id){
+        public async Task<ActionResult> DeleteCart( string id){
             var result = await _cartService.DeleteCartAsync(id);
-            if(!result){
+            if(!result)
                 return BadRequest("sorry"+", "+" error occure why trying to delete the item from the cart");
-            }else{
+            
                 return Ok("item deleted successfully");
-            }
+            
         }
     }
 }

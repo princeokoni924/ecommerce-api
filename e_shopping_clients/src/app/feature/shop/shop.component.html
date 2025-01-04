@@ -22,8 +22,8 @@
      >
      <input type="search"
       class="block w-full p-4 
-      text-sm text-gray-900 border
-       border-gray-300 rounded-lg"
+      text-lg text-gray-900 border-collapse
+       border-gray-300 rounded-xl"
         placeholder="Search"
         name="search"
         [(ngModel)]="shopParams.Search"
@@ -37,6 +37,9 @@
        </button>
     </form>
    <div class="flex gap-3">
+    <div class=" flex justify-end">
+
+    </div>
      <button 
      class="match-input-height"
      mat-stroked-button (click)="openFilterDialog()">
@@ -56,9 +59,12 @@
   <div class="grid grid-cols-6 gap-4">
     @for (product of products.data; track product.id)
      {
-       <app-product-item [product]="product">
+      
+        <app-product-item [product]="product">
     
-       </app-product-item>
+        </app-product-item>
+      
+       
      }
     </div>
 </div>
@@ -68,7 +74,7 @@
  @for (sort of sortOptions; track $index)
  {
   <mat-list-option 
-  [value]="sort.value" [selected]="shopParams.sort">
+  [value]="sort.value" [selected]="shopParams.sort == sort.value">
     {{sort.name}}
   </mat-list-option>
  }

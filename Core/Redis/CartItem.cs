@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Core.Redis
 {
-    public class CartItems
+    public class CartItem
     {
         public int ProductId { get; set; }
         public required string ProductName { get; set; }
@@ -13,6 +13,6 @@ namespace Core.Redis
         public int Quantity { get; set; }
         public required string PictureUrl { get; set; }
         public required string Brand { get; set; }
-        public required string Type { get; set; }
+        public required string ProductType { get; set; } //= string.Empty;
     }
 }
