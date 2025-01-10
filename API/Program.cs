@@ -4,14 +4,19 @@ using Infrastructure.ServicConfig;
 using Infrastructure.Data.SeedData;
 using API.MiddleWare;
 using StackExchange.Redis;
-using Core.Contract.ICartServices;
-using Infrastructure.CartServices;
+using Core.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddServices(builder.Configuration);
+builder.Services.AddAuthorization();
+
+builder.Services.AddIdentityApiEndpoints<ShopUser>()
+.AddEntityFrameworkStores<StoreContext>();
 builder.Services.AddSingleton<IConnectionMultiplexer>(config =>{
   var connString = builder.Configuration.GetConnectionString("Redis");
   if(connString == null){
@@ -20,6 +25,8 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(config =>{
   var configuration = ConfigurationOptions.Parse(connString, true);
    return ConnectionMultiplexer.Connect(configuration);
 });
+
+
 // adding cors service
 builder.Services.AddCors();
 
@@ -48,9 +55,11 @@ servise to allow are, (1) allow header,
 app.UseCors(
   c=>c.AllowAnyHeader()
 .AllowAnyMethod()
+.AllowCredentials()
 .WithOrigins("http://localhost:4200","https://localhost:4200"));
 
 app.MapControllers();
+app.MapGroup("api").MapIdentityApi<ShopUser>();
 
 // config  seedData and the http Request pipline here 
 try{
@@ -59,8 +68,8 @@ var serviceProvider = createScope.ServiceProvider;
 var getRequiredServicesContext = serviceProvider.GetRequiredService<StoreContext>();
  await getRequiredServicesContext.Database.MigrateAsync();
  await StoreContextSeedData.SeedDataAsync(getRequiredServicesContext);
-}catch(Exception err){
-Console.WriteLine(err);
+}catch(Exception){
+Console.WriteLine("error occured while seeding data");
 throw;
 }
 

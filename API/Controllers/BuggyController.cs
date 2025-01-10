@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Dtos;
 using Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -37,8 +39,14 @@ namespace API.Controllers
             }
 
         // secret
-
-
+            [Authorize]
+            [HttpGet("secretcode")]
+            public IActionResult GetSecretCode()
+            {
+                var name = User.FindFirst(ClaimTypes.Name)?.Value;
+                var id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                return Ok("Hello "+name+" your id is "+id);
+            }
             //validationerror
             [HttpPost("validaterror")]
             public IActionResult GetValidateError(CreateProductDto productDto)
