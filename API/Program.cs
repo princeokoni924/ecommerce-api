@@ -5,8 +5,6 @@ using Infrastructure.Data.SeedData;
 using API.MiddleWare;
 using StackExchange.Redis;
 using Core.Entities;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -39,9 +37,7 @@ var app = builder.Build();
 //     app.UseSwaggerUI();
 // }
 
-// app.UseHttpsRedirection();
 
-// app.UseAuthorization();
 /*
 configure middleware here
 */
@@ -57,6 +53,13 @@ app.UseCors(
 .AllowAnyMethod()
 .AllowCredentials()
 .WithOrigins("http://localhost:4200","https://localhost:4200"));
+
+//app.UseHttpsRedirection();
+
+// app.UseAuthentication();
+//  app.UseAuthorization();
+
+
 
 app.MapControllers();
 app.MapGroup("api").MapIdentityApi<ShopUser>();

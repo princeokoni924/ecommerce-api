@@ -5,6 +5,8 @@ import { ProductDetailsComponent } from './feature/shop/product-details/product-
 import { ErrorHandlingComponent } from './feature/error-handling/error-handling.component';
 import { CartComponent } from './feature/cart/cart.component';
 import { CheckoutComponent } from './feature/checkout/checkout.component';
+import { LoginComponent } from './feature/account/login/login.component';
+import { RegisterComponent } from './feature/account/register/register.component';
 
 export const routes: Routes = [
  {path: '', component: HomeComponent},
@@ -12,6 +14,8 @@ export const routes: Routes = [
  {path: 'shop/:id', component: ProductDetailsComponent},
  {path:'cart', component:CartComponent},
  {path: 'checkout', component: CheckoutComponent},
+ {path: 'account/login', component: LoginComponent},
+ {path: 'account/register', component: RegisterComponent},
  {path: 'error-handling', component: ErrorHandlingComponent},
  {path: 'server-error', component: ErrorHandlingComponent},
  {path: '**', redirectTo: 'not-found', pathMatch: 'full'}

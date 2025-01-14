@@ -8,6 +8,7 @@ import { errorInterceptor } from './angularCore/interceptors/error.interceptor';
 import { loadingInterceptor } from './angularCor/interceptors/loading.interceptor';
 import { InitService } from './angularCore/Services/init.service';
 import { lastValueFrom } from 'rxjs';
+import { authInterceptor } from './angularCore/interceptors/auth.interceptor';
 
 // method the return the app initializer
 function initializeApp(initService: InitService){
@@ -27,7 +28,9 @@ export const appConfig: ApplicationConfig = {
     , provideAnimationsAsync()
     ,provideHttpClient(withInterceptors
       ([errorInterceptor,
-       loadingInterceptor])),
+       loadingInterceptor,
+      authInterceptor
+      ])),
     {
       provide: APP_INITIALIZER,
       // use initializer method here
