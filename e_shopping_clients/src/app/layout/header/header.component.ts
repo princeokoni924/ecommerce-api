@@ -9,6 +9,9 @@ import { MatProgressBar, MatProgressBarModule } from '@angular/material/progress
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CartService } from '../../angularCore/Services/cart.service';
 import { AccountService } from '../../angularCore/Services/account.service';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatDivider } from '@angular/material/divider';
+import { MatList, MatListItem } from '@angular/material/list';
 
 
 @Component({
@@ -22,7 +25,11 @@ import { AccountService } from '../../angularCore/Services/account.service';
     RouterLinkActive,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+  MatMenuTrigger,
+ MatMenu,
+MatDivider,
+MatMenuItem
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

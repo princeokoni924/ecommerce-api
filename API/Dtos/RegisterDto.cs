@@ -19,7 +19,7 @@ namespace API.Dtos
         //[StringLength(10, ErrorMessage ="password should be at least to digit, and must contain symbol and alphanumeric")]
         public string Password { get; set; }= string.Empty;
         [Required]
-        [Compare(nameof(Password))]//,  ErrorMessage ="password doesn't match"]
+        [Compare(nameof(Password),  ErrorMessage ="password doesn't match")]
         public string ConfirmPassword { get; set; }= string.Empty;   
     }
 }

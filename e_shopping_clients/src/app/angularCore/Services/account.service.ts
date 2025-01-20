@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Address, User } from '../../shared/models/User';
-import {map,tap} from 'rxjs'
+import {catchError, map,tap, throwError} from 'rxjs'
 //import {SignalService} from './signalr.service';
 
 @Injectable({
@@ -14,15 +14,20 @@ private http = inject(HttpClient);
 currentUser = signal<User| null>(null);
 //private signalServices = inject(this.signalServices);
 
-login(values:any){
+login(data:any){
 let params = new HttpParams();
 params = params.append("useCookies", true);
 // allow creedential when the user's login
-return this.http.post<User>(this.baseUrl+'login', values,{params, withCredentials: true})
+return this.http.post<User>(this.baseUrl+'login', data,{params, withCredentials: true})
 }
 
-register(value: any){
-return this.http.post(this.baseUrl+ 'register', value)
+register(data: any){
+return this.http.post(this.baseUrl + 'register', data).pipe(
+catchError((err)=>{
+  alert('Registeration fail');
+  return throwError(()=> err)
+})
+)
 }
 
 getUserInfor(){
@@ -46,5 +51,10 @@ updateUserAddress(address: Address){
 return this.http.post(this.baseUrl+ 'account/ address', address).subscribe({
   
 })
+}
+
+// Authentication service
+getAuthState(){
+  return this.http.get<{isAuthenticated: boolean}>(this.baseUrl + 'account/auth-status');
 }
 }

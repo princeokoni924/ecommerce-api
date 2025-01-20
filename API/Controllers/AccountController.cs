@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace API.Controllers
 {
     public class AccountController(SignInManager<ShopUser> _signIn):BaseApiController
@@ -19,14 +20,29 @@ namespace API.Controllers
                 UserName = registerDto.LastName
             };
             var result = await _signIn.UserManager.CreateAsync(user, registerDto.Password);
-            if(!result.Succeeded){
-                foreach(var errors in result.Errors){
-                    ModelState.AddModelError(errors.Code, errors.Description);
-                };
-                return ValidationProblem();
+            // if(!result.Succeeded){
+            //     foreach(var errors in result.Errors){
+            //         ModelState.AddModelError(errors.Code, errors.Description);
+            //     };
+            //     return ValidationProblem();
+            // }
+            if(string.IsNullOrEmpty(registerDto.FirstName)){
+                return BadRequest(new {err = "first name required"});
+            };
+
+            if(string.IsNullOrEmpty(registerDto.LastName)){
+                return BadRequest(new {err = "last name required"});
+            };
+            if(string.IsNullOrEmpty(registerDto.Email)|| !ValidatedEmail.IsValidEmail(registerDto.Email)){
+                return BadRequest(new {err= "a valid email required"});
             }
+
+            //if(string.IsNullOrEmpty(registerDto.))
+
             return Ok(new {message = $"Regisration successfully", User = user});
         }
+
+       
 
         [Authorize]
         [HttpPost("logout")]
@@ -52,7 +68,7 @@ namespace API.Controllers
             
         }
 
-        [HttpGet]
+        [HttpGet("auth-status")]
         public ActionResult GetAuthsState(){
             return Ok(new {isAuthenticated = User.Identity?.IsAuthenticated?? false});
         }
