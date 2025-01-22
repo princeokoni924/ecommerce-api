@@ -1,5 +1,5 @@
 using Core.Contract.ICartServices;
-using Core.Entities.RedisShopCart;
+using Core.Redis;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers

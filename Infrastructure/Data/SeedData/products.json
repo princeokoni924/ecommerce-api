@@ -1,83 +1,83 @@
 [
   {
-    "Name": "Angular Speedster Board 2000",
+    "Name": "Speedster Board 2000",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 200,
     "PictureUrl": "/images/products/sb-ang1.png",
     "ProductType": "Boards",
-    "Brand": "Angular",
+    "Brand": "Sky speed",
     "QuantityInStock": 82
   },
   {
-    "Name": "Green Angular Board 3000",
+    "Name": "Green Board 3000",
     "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
     "Price": 150,
     "PictureUrl": "/images/products/sb-ang2.png",
     "ProductType": "Boards",
-    "Brand": "Angular",
+    "Brand": "Green Board",
     "QuantityInStock": 75
   },
   {
-    "Name": "Core Board Speed Rush 3",
+    "Name": "Board Speed Rush 3",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 180,
     "PictureUrl": "/images/products/sb-core1.png",
     "ProductType": "Boards",
-    "Brand": "NetCore",
+    "Brand": "Speed Rush",
     "QuantityInStock": 3
   },
   {
-    "Name": "Net Core Super Board",
+    "Name": "Super Board",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 300,
     "PictureUrl": "/images/products/sb-core2.png",
     "ProductType": "Boards",
-    "Brand": "NetCore",
+    "Brand": "Super Board",
     "QuantityInStock": 52
   },
   {
-    "Name": "React Board Super Whizzy Fast",
+    "Name": " Board Super Whizzy Fast",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 250,
     "PictureUrl": "/images/products/sb-react1.png",
     "ProductType": "Boards",
-    "Brand": "React",
+    "Brand": "Super Whizzy",
     "QuantityInStock": 97
   },
   {
-    "Name": "Typescript Entry Board",
+    "Name": "Entry Board",
     "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
     "Price": 120,
     "PictureUrl": "/images/products/sb-ts1.png",
     "ProductType": "Boards",
-    "Brand": "Typescript",
+    "Brand": "Entry Board",
     "QuantityInStock": 37
   },
   {
-    "Name": "Core Blue Hat",
+    "Name": " Blue Hat",
     "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 10,
     "PictureUrl": "/images/products/hat-core1.png",
     "ProductType": "Hats",
-    "Brand": "NetCore",
+    "Brand": "Blue Hat",
     "QuantityInStock": 32
   },
   {
-    "Name": "Green React Woolen Hat",
+    "Name": "Green Woolen Hat",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 8,
     "PictureUrl": "/images/products/hat-react1.png",
     "ProductType": "Hats",
-    "Brand": "React",
+    "Brand": "Woolen Hat",
     "QuantityInStock": 6
   },
   {
-    "Name": "Purple React Woolen Hat",
+    "Name": "Purple Woolen Hat",
     "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 15,
     "PictureUrl": "/images/products/hat-react2.png",
     "ProductType": "Hats",
-    "Brand": "React",
+    "Brand": "Woolen Hat",
     "QuantityInStock": 17
   },
   {
@@ -86,79 +86,79 @@
     "Price": 18,
     "PictureUrl": "/images/products/glove-code1.png",
     "ProductType": "Gloves",
-    "Brand": "VS Code",
+    "Brand": "Blue Hat",
     "QuantityInStock": 74
   },
   {
-    "Name": "Green Code Gloves",
+    "Name": "Green Gloves",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 15,
     "PictureUrl": "/images/products/glove-code2.png",
     "ProductType": "Gloves",
-    "Brand": "VS Code",
+    "Brand": "Green Board",
     "QuantityInStock": 19
   },
   {
-    "Name": "Purple React Gloves",
+    "Name": "Purple Gloves",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
     "Price": 16,
     "PictureUrl": "/images/products/glove-react1.png",
     "ProductType": "Gloves",
-    "Brand": "React",
+    "Brand": "Purple Gloves",
     "QuantityInStock": 77
   },
   {
-    "Name": "Green React Gloves",
+    "Name": "Green Gloves",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 14,
     "PictureUrl": "/images/products/glove-react2.png",
     "ProductType": "Gloves",
-    "Brand": "React",
+    "Brand": "Green Board",
     "QuantityInStock": 45
   },
   {
-    "Name": "Redis Red Boots",
+    "Name": " Red Boots",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 250,
     "PictureUrl": "/images/products/boot-redis1.png",
     "ProductType": "Boots",
-    "Brand": "Redis",
+    "Brand": "Red Boots",
     "QuantityInStock": 49
   },
   {
-    "Name": "Core Red Boots",
+    "Name": "Red Boots",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 189.99,
     "PictureUrl": "/images/products/boot-core2.png",
     "ProductType": "Boots",
-    "Brand": "NetCore",
+    "Brand": "Red Boots",
     "QuantityInStock": 28
   },
   {
-    "Name": "Core Purple Boots",
+    "Name": " Purple Boots",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 199.99,
     "PictureUrl": "/images/products/boot-core1.png",
     "ProductType": "Boots",
-    "Brand": "NetCore",
+    "Brand": "Purple Gloves",
     "QuantityInStock": 69
   },
   {
-    "Name": "Angular Purple Boots",
+    "Name": " Purple Boots",
     "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
     "Price": 150,
     "PictureUrl": "/images/products/boot-ang2.png",
     "ProductType": "Boots",
-    "Brand": "Angular",
+    "Brand": "Purple Gloves",
     "QuantityInStock": 35
   },
   {
-    "Name": "Angular Blue Boots",
+    "Name": " Blue Boots",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 180,
     "PictureUrl": "/images/products/boot-ang1.png",
     "ProductType": "Boots",
-    "Brand": "Angular",
+    "Brand": "Blue Boots",
     "QuantityInStock": 27
   }
 ]

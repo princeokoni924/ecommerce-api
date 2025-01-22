@@ -1,6 +1,6 @@
 using System.Text.Json;
 using Core.Contract.ICartServices;
-using Core.Entities.RedisShopCart;
+using Core.Redis;
 using StackExchange.Redis;
 
 namespace Infrastructure.CartServices

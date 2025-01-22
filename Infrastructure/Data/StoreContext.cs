@@ -8,8 +8,9 @@ namespace Infrastructure.Data;
 
 public class StoreContext (DbContextOptions opts): IdentityDbContext<ShopUser>(opts)
 {
- public DbSet<Product>? Products {get; set;}
-public DbSet<Address>? Addresses {get; set;}
+ public DbSet<Product> Products {get; set;}
+public DbSet<Address> Addresses {get; set;}
+public DbSet<DeliveryMethod> DeliveryMethods {get; set;}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductConfigurations).Assembly);

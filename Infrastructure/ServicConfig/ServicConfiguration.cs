@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.CartServices;
+using Infrastructure.Services;
 
 namespace Infrastructure.ServicConfig;
 public static class ServicConfiguration
@@ -19,6 +20,7 @@ public static class ServicConfiguration
   services.AddScoped<IProductRepository,ProductRepository>();
   services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
   services.AddSingleton<IShoppingCartServices, ShoppingCartService>();
+  services.AddScoped<IPaymentService, PaymentService>();
 
   
   

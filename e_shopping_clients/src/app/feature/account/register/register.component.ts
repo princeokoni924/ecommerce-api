@@ -54,20 +54,19 @@ onSubmitRegister(){
     },
     //error: (err)=>this.validationErrors = err
      error: (err)=>{
-      if(err.error){
-        Object.keys(err.error).forEach((field)=>{
-          const control = this.registerForm.get(field);
-          if(control){
-            control.setErrors({serverError: err.error[field]});
-          }
-          err.snackBarService.error('Kindly provide your details')
-        })
-      }
+      // if(err.error){
+      //   Object.keys(err.error).forEach((field)=>{
+      //     const control = this.registerForm.get(field);
+      //     if(control){
+      //       control.setErrors({serverError: err.error[field]});
+      //     }
+      //     err.snackBarService.error('Kindly provide your details')
+      //   })
+      // }
      }
   })
 }
 }
-function field(value: string, index: number, array: string[]): void {
-  throw new Error('Function not implemented.');
-}
+
+
 

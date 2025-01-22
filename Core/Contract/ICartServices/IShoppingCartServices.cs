@@ -1,4 +1,4 @@
-using Core.Entities.RedisShopCart;
+using Core.Redis;
 
 namespace Core.Contract.ICartServices
 {

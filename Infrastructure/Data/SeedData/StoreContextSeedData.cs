@@ -11,8 +11,9 @@ namespace Infrastructure.Data.SeedData
     {
         public static async Task SeedDataAsync(StoreContext storeSeed)
         {
-           // if there's no product 
-           if(!storeSeed.Products.Any())
+            // if there's no product 
+              
+            if (!storeSeed.Products.Any())
            {
                 // read the data from the json
                 var readDataFromJon = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/products.json");
@@ -25,6 +26,18 @@ namespace Infrastructure.Data.SeedData
                      await storeSeed.SaveChangesAsync();
                 
            }
+              
+
+              if(!storeSeed.DeliveryMethods.Any())
+              {
+                var deliveryMethods = await File.ReadAllTextAsync("../infrastructure/Data/SeedData/delivery.json");
+                var deserializeDeliveryMethod = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryMethods);
+                if(deserializeDeliveryMethod == null){
+                    return;
+                }
+                storeSeed.DeliveryMethods.AddRange(deserializeDeliveryMethod);
+                await storeSeed.SaveChangesAsync();
+             }
         }
     }
 }

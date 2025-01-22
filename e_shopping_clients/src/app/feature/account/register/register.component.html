@@ -27,7 +27,7 @@
       </div>
    }
     <button
-    [disabled]="registerForm.invalid"
+    [disabled]="registerForm.invalid.valueOf"
     mat-flat-button 
     type="submit" 
     class="py-2 w-full">Submit</button>
