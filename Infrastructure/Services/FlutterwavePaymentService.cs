@@ -67,7 +67,7 @@ namespace Infrastructure.Services
           }
 
           // calculate the total price
-          var totalAmount = (long)cart.Items.Sum(item=>item.Price *item.Quantity) + (long)deliveryPrice * 100;
+          var totalAmount =(long)cart.Items.Sum(item=>item.Price *item.Quantity) + (long)deliveryPrice * 100;
           // create a payment request
           var paymentRequest = new{
             tx_ref = cart.PaymentIntentId,
