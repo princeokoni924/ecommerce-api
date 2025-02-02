@@ -8,4 +8,12 @@
  @if(control.hasError('email')){
    <mat-error>Email is invalid</mat-error>
  }
+
+ @if(control.hasError('password')){
+   <mat-error>Password is should be at least 9 characters long</mat-error>
+ }
+
+ @if(control.hasError('confirm password')){
+   <mat-error>confirmPassword doesn't match the normal password</mat-error>
+ }
 </mat-form-field>

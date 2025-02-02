@@ -16,11 +16,18 @@ public static class ServicConfiguration
  {
   
     // Add service containers
-  services.AddDbContext<StoreContext>(opt=>opt.UseSqlServer(configuration.GetConnectionString("StoreConns")));
+  services.AddDbContext<StoreContext>(opt=>opt.UseSqlServer(configuration
+  .GetConnectionString("StoreConns"),
+  sqlServerOptions =>sqlServerOptions.EnableRetryOnFailure(
+    maxRetryCount: 15,
+    maxRetryDelay: TimeSpan.FromSeconds(30),
+    errorNumbersToAdd: null
+  )));
   services.AddScoped<IProductRepository,ProductRepository>();
   services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
   services.AddSingleton<IShoppingCartServices, ShoppingCartService>();
-  services.AddScoped<IPaymentService, PaymentService>();
+  //services.AddScoped<IPaymentService, PaymentService>();
+  services.AddScoped<IFlutterWavePaymentService, FlutterwavePaymentService>();
 
   
   

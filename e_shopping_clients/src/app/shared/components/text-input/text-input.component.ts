@@ -32,14 +32,10 @@ this.controlDir.valueAccessor = this;
   registerOnTouched(fn: any): void {
     
   }
-  // setDisabledState?(isDisabled: boolean): void {
+  setDisabledState?(isDisabled: boolean): void {
    
-  // }
+  }
 
-  /* geter function for typeScript benefit.
-  the reseason function is so that i can use the control
-  in my templete
-  */
   get control(){
     return this.controlDir.control as FormControl
   }

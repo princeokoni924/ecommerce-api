@@ -16,7 +16,7 @@ namespace API.Dtos
         [EmailAddress]
         public string Email { get; set; }= string.Empty;
         [Required]
-        //[StringLength(10, ErrorMessage ="password should be at least to digit, and must contain symbol and alphanumeric")]
+        [StringLength(9, ErrorMessage ="password should be at least to digit, and must contain symbol and alphanumeric")]
         public string Password { get; set; }= string.Empty;
         [Required]
         [Compare(nameof(Password),  ErrorMessage ="password doesn't match")]

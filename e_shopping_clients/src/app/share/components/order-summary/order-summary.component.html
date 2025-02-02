@@ -26,10 +26,15 @@
                 </dl>
 
           </div>
-     <div class="flex flex-col gap-2">
-                <button routerLink="/checkout/" mat-flat-button >Proceed to checkout</button>
-                <button routerLink="/shop/" mat-button class="bg-gray-200 text-gray-900 font-semibold py-2 rounded-lg">Continue shopping</button>
-     </div>
+           <!--if the location is not the same with the checkout then execute the location to get the path -->
+            @if(location.path() !== '/checkout')
+            {
+                <div class="flex flex-col gap-2">
+                        <button routerLink="/checkout/" mat-flat-button >Proceed to checkout</button>
+                        <button routerLink="/shop/" mat-button class="bg-gray-200 text-gray-900 font-semibold py-2 rounded-lg">Continue shopping</button>
+             </div>
+            }
+     
     </div>
 
 <div class="space-y-4 rounded-lg border border-gray-200 p-4 bg-white shadow-sm">

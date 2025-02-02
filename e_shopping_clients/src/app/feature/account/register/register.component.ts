@@ -19,7 +19,7 @@ import { TextInputComponent } from "../../../shared/components/text-input/text-i
     MatCard,
     MatButton,
     TextInputComponent,
-    RouterLink
+    RouterLink,
 ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -37,7 +37,7 @@ registerForm = this.formBuilder.group({
   firstName: ['', Validators.required],
   lastName: ['',Validators.required],
   email: ['',[Validators.required, Validators.email]],
-  password: ['', Validators.required],
+  password: ['', Validators.required ], // password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character
   confirmPassword:['', Validators.required],
   //address: ['address not provided']
 });
@@ -50,23 +50,13 @@ onSubmitRegister(){
   this.accountservice.register(this.registerForm.value).subscribe({
     next: ()=>{
       this.snackBarService.success('Registration successful');
-      this. router.navigateByUrl('/login')
+      this. router.navigateByUrl('/login');
     },
-    //error: (err)=>this.validationErrors = err
-     error: (err)=>{
-      // if(err.error){
-      //   Object.keys(err.error).forEach((field)=>{
-      //     const control = this.registerForm.get(field);
-      //     if(control){
-      //       control.setErrors({serverError: err.error[field]});
-      //     }
-      //     err.snackBarService.error('Kindly provide your details')
-      //   })
-      // }
-     }
+    error :error => this.validationErrors = error
   })
+  }
 }
-}
+
 
 
 

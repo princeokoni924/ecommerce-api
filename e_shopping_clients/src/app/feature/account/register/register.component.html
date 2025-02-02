@@ -3,17 +3,16 @@
  <div class="text-center mb-6">
  <h1 class=" text-3xl font-semibold text-primary">Register</h1>
  <!-- first name -->
-
  <app-text-input label="first name" formControlName="firstName"/>
  <!-- last name -->
 <app-text-input label="last name" formControlName="lastName"/>
  <!-- email -->
-<app-text-input label="Email Address" formControlName="email" type="Email" />
+<app-text-input label="Email Address" formControlName="email" type="Email" matInput placeholder="name@gmail.com" />
  <!-- password -->
   <app-text-input label="password" formControlName="password" type="password"/>
   <!-- confirm password -->
   <app-text-input label="confirm password"
-  formControlName="password" type="password"/>
+  formControlName="confirmPassword" type="password"/>
   
    <!-- submit -->
    @if (validationErrors) {
@@ -27,10 +26,10 @@
       </div>
    }
     <button
-    [disabled]="registerForm.invalid.valueOf"
+    [disabled]="registerForm.invalid"
     mat-flat-button 
     type="submit" 
-    class="py-2 w-full">Submit</button>
+    class="py-2 w-full">Register</button>
  </div>
 </form>
 <p>Already have an account? <span class="login-redirect" routerLink="/account/login">Sign in!</span></p>

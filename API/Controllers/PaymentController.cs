@@ -15,13 +15,13 @@ using Microsoft.Extensions.Logging;
 namespace API.Controllers
 {
     
-    public class PaymentController(IPaymentService _paymentService,
+    public class PaymentController(IFlutterWavePaymentService _paymentService,
     IGenericRepo<DeliveryMethod> _dmRepo ) : BaseApiController
     {
         [Authorize]
         [HttpPost("{cartId}")]
         public async Task<ActionResult<ShoppingCart>>CreateOrUpdatePaymentIntent(string cartId){
-           var cart = await _paymentService.CreateOrUpdatePaymentItent(cartId);
+           var cart = await _paymentService.InitializePayment(cartId);
            if(cart != null){
                return Ok(cart);
            }else{

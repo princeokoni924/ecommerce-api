@@ -69,7 +69,7 @@ public class ProductController(IGenericRepo<Product> _repo):BaseApiController
  } 
 
  // edit product
- [HttpPut("id:int")]
+ [HttpPut("EditProduct")]
  public async Task<ActionResult<Product>> EditProduct(int id, Product product)
  {
    if(product.Id !=id || !ProductAlreadyExist(id))
